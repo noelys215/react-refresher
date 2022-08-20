@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+	getAuth,
+	signInWithRedirect,
+	signInWithPopup,
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
@@ -29,13 +35,9 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+	if (!userAuth) return;
 	const userDocRef = doc(db, 'users', userAuth.uid);
-
-	console.log(userDocRef);
-
 	const userSnapshot = await getDoc(userDocRef);
-	console.log(userSnapshot);
-	console.log(userSnapshot.exists());
 
 	//if user data does not exist
 	if (!userSnapshot.exists()) {
@@ -57,4 +59,9 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 		// return userDoc
 		return userDocRef;
 	}
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+	if (!email || password) return;
+	return await createUserWithEmailAndPassword(auth, email, password);
 };
