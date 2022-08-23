@@ -44,7 +44,6 @@ const SignInForm = () => {
 
 		setFormFields({ ...formFields, [name]: value });
 	};
-
 	return (
 		<div className="sign-in-container">
 			<h2>Already have an account?</h2>
@@ -69,8 +68,8 @@ const SignInForm = () => {
 				/>
 				<div className="buttons-container">
 					<Button type="submit">Sign In</Button>
-					<Button buttonType="google" type="button" onClick={signInWithGoogle}>
-						Sign In With Google
+					<Button type="button" buttonType="google" onClick={signInWithGoogle}>
+						Google sign in
 					</Button>
 				</div>
 			</form>
