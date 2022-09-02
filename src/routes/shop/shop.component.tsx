@@ -5,8 +5,6 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 import Category from '../category/category.component';
 import { useDispatch } from 'react-redux';
 
-import './shop.styles.scss';
-
 const Shop = () => {
 	const dispatch = useDispatch();
 
